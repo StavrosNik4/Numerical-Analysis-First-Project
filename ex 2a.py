@@ -12,7 +12,7 @@ f_prime = sp.lambdify('x', f_prime)
 f_2nd_prime = sp.lambdify('x', f_2nd_prime)
 
 eps = 10**(-13)
-x = 0
+x = -2
 xn = x - (1 / (f_prime(x) /f(x)) - 0.5 * (f_2nd_prime(x) / f_prime(x)))
 n = 0
 

@@ -20,8 +20,8 @@ f = sp.lambdify('x', f)
 f_prime = sp.lambdify('x', f_prime)
 
 
-eps = 10**(-13)
-x = 1
+eps = 10**(-6)
+x = 0
 xn = x - (f(x) / f_prime(x))
 n = 0
 
@@ -33,4 +33,4 @@ while abs(xn - x) > eps:
     n = n + 1
 
 print(n)
-print(x)
+print(xn)
