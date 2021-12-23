@@ -3,21 +3,27 @@
 from math import e as e
 import sympy as sp
 
-x = sp.Symbol('x')
+z = sp.Symbol('z')
 
-f = 14 * x * e ** (x - 2) - 12 * e ** (x - 2) - 7 * x ** 3 + 20 * x ** 2 - 26 * x + 12
-f = sp.lambdify('x', f)
+f = 14 * z * e ** (z - 2) - 12 * e ** (z - 2) - 7 * z ** 3 + 20 * z ** 2 - 26 * z + 12
+f = sp.lambdify('z', f)
 
-x0 = 1.4
-x1 = 3
-xn = x1 - (f(x1)*(x1-x0)/(f(x1)-f(x0)))
-n = 1
+eps = 10**(-5)
 
-while abs(xn-x1) > 10**(-13):
-    x0 = x1
-    x1 = xn
-    xn = x1 - (f(x1)*(x1-x0)/(f(x1)-f(x0)))
+x = [1.6, 2.2]
+
+n = 0
+
+while abs(x[n+1] - x[n]) >= eps:
     n = n + 1
+    Dx = x[n] - x[n-1]
+    Dy = f(x[n]) - f(x[n-1])
+    c = x[n] - ((f(x[n]) * Dx) / Dy)
+    x.append(c)
+    d = abs(x[n+1] - x[n])
+    print("n: " + str(n) + " x: " + str("{:.5f}".format(x[n + 1])) + ", f(x): " + str(
+        "{:.5f}".format(f(x[n + 1]))) + ", d: " + str("{:.5f}".format(d)))
 
-print(n)
-print(xn)
+print("-------------------")
+print("c: " + str("{:.5f}".format(x[n])))
+print("f(c): " + str("{:.5f}".format(f(x[n]))))
