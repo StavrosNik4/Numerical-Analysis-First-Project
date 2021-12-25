@@ -10,7 +10,7 @@ def cholesky(matrix):
             if j == i:
                 for k in range(j):
                     sum1 += pow(lower[j][k], 2)
-                lower[j][j] = float(math.sqrt(matrix[j][j] - sum1))
+                lower[i][j] = float(math.sqrt(matrix[j][j] - sum1))
             elif i > j:
                 for k in range(j):
                     sum1 += (lower[i][k] * lower[j][k])
@@ -23,10 +23,14 @@ def cholesky(matrix):
 
 # Main
 
-matrix = [[2, 1, 1],
+matrix = np.array([[2, 1, 1],
           [1, 2, 1],
-          [1, 1, 2]]
+          [1, 1, 2]], float)
+
+print("A matrix:")
+print(matrix)
 
 l = cholesky(matrix)
 
+print("L of A matrix:")
 print(l)
