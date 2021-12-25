@@ -52,7 +52,7 @@ def epanalipseis(k, ba):
     return np.ceil(((np.log(ba) - np.log(ep)) / np.log(2)))
 
 
-print(epanalipseis(5, 0.6))
+print(epanalipseis(5, 1))
 
 print("---------------")
 
