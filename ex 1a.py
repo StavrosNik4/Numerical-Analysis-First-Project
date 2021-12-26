@@ -7,8 +7,15 @@ def fx(x):
     return 14 * x * e ** (x - 2) - 12 * e ** (x - 2) - 7 * x ** 3 + 20 * x ** 2 - 26 * x + 12
 
 
-a = 0
-b = 1.5
+print("Δώσε διάστημα για εύρεση ρίζας:")
+print("a: ")
+a = float(input())
+print("b: ")
+b = float(input())
+while b < a:
+    print("Το b δεν μπορεί να είναι μικρότερο από το a!")
+    print("b: ")
+    b = float(input())
 n = 0
 c = 0  # for the warning
 eps = 10 ** (-5)

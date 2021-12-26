@@ -32,7 +32,7 @@ def gauss_seidel(a, b):
         # temp variable d to store b[j]
         d = b[j]
 
-        # to calculate respective xi, yi, zi
+        # to calculate respective xi, yi, z
         for i in range(n):
             if j != i:
                 d -= a[j][i] * x[i]
@@ -42,7 +42,7 @@ def gauss_seidel(a, b):
     return x
 
 
-n = 10
+n = 1000
 
 a = np.zeros([n, n], float)
 b = np.zeros(n, float)
