@@ -24,9 +24,8 @@ def fillb(b):
     return tmp
 
 
-def gauss_seidel(a, b):
+def gauss_seidel(a, b, x):
     n = len(a)
-    x = np.zeros(n, float)
     # for loop for 3 times as to calculate x, y , z
     for j in range(n):
         # temp variable d to store b[j]
@@ -42,13 +41,19 @@ def gauss_seidel(a, b):
     return x
 
 
-n = 1000
+n = 10
 
 a = np.zeros([n, n], float)
 b = np.zeros(n, float)
 
 a = filla(a)
 b = fillb(b)
-x = gauss_seidel(a, b)
+x = np.zeros(n, float)
 
+print(a)
+print(b)
 print(x)
+
+for i in range(n):
+    x = gauss_seidel(a, b, x)
+    print(np.around(x, 4))

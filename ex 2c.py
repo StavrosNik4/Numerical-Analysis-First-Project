@@ -7,13 +7,20 @@ z = sp.Symbol('z')
 f = 54 * z ** 6 + 45 * z ** 5 - 102 * z ** 4 - 69 * z ** 3 + 35 * z ** 2 + 16 * z - 4
 f = sp.lambdify('z', f)
 
-eps = 10**(-6)
+eps = 10**(-5)
 
-x = [0, 1, 2]
+print("Δώσε x0:")
+x0 = float(input())
+print("Δώσε x1:")
+x1 = float(input())
+print("Δώσε x2:")
+x2 = float(input())
+
+x = [x0, x1, x2]
 n = 0
 rootFound = False
 
-while abs(x[n+1] - x[n]) > eps:
+while abs(x[n+1] - x[n]) >= eps:
     q = f(x[n]) / f(x[n+1])
     r = f(x[n+2]) / f(x[n+1])
     s = f(x[n+2]) / f(x[n])
@@ -23,5 +30,7 @@ while abs(x[n+1] - x[n]) > eps:
         "{:.5f}".format(f(x[n + 1]))))
     n = n + 1
 
-print(x[n])
-print(f(x[n]))
+print("-----------------------")
+print("xn - x: " + str("{:.6f}".format(abs(x[n+1] - x[n]))))
+print("c: " + str("{:.5f}".format(x[n])))
+print("f(c): " + str("{:.5f}".format(f(x[n]))))
