@@ -24,16 +24,17 @@ def fillb(b):
     return tmp
 
 
-def gauss_seidel(a, b, iterations):
+def gauss_seidel(a, b):
     n = len(a)
     x = np.zeros(n, float)
-    # for loop for 3 times as to calculate x, y , z
-    for k in range(iterations):
-        for j in range(n):
-            sum = 0
-            for i in range(len(a[0])):
-                sum += a[j][i]
-            x[j] = (b[j] - sum + a[j][j] * x[j]) / a[j][j]
+    for i in range(n):
+        sum1 = 0
+        sum2 = 0
+        for j in range(i-1):
+            sum1 += a[i][j] * x[j]
+        for j in range(i+1, n):
+            sum2 += a[i][j] * x[j]
+        x[i] =  (b[i] - sum1 - sum2) / a[i][i]
     # returning our updated solution
     return x
 
@@ -45,6 +46,6 @@ b = np.zeros(n, float)
 
 a = filla(a)
 b = fillb(b)
-x = gauss_seidel(a, b, n)
-
-print(x)
+for i in range(n):
+    x = gauss_seidel(a, b)
+    print(x)
