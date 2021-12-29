@@ -16,8 +16,6 @@ A = np.array([[0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
               [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1],
               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0]], float)
 
-print(A)
-
 n = 15
 q = 0.15
 
@@ -30,19 +28,31 @@ for i in range(n):
             nj += A[j][k]
         G[i][j] = q / n + (1 - q) * A[j][i] / nj
 
+z = np.zeros(15, float)
+
+for i in range(15):
+    for k in range(15):
+        z[i] = z[i] + G[k][i]
+# ερώτημα 1
 print("---------------")
-print(G)
+print("z: " + str(z))
 
-'''
-q = 0.15
-n = 15
-i = 0
-j = 1
+# ερώτημα 2
 
-ni = 0
-for k in range(15):
-    ni += a[i][k]
+#G = G.T
 
-p = q/n + (1-q) * (a[i][j]/ni)
+p = np.array([3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], float)
 
-print(p) '''
+for i in range(n):
+    p = np.dot(G, p)
+    p = (1 /p[0]) * p
+
+print(p)
+
+sum = 0
+for i in range(n):
+    sum += p[i]
+for i in range(n):
+    p[i] /= sum
+
+print(p)

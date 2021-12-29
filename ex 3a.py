@@ -16,8 +16,7 @@ def gauss(a, b):
                     p[[k, i]] = p[[i, k]]
                     break
 
-    # Decomposing matrix into Upper
-    # and Lower triangular matrix
+    # LU decomposition
     for i in range(n):
 
         # Upper Triangular
@@ -45,18 +44,19 @@ def gauss(a, b):
                 # Evaluating L(k, i)
                 lower[k][i] = float((a[k][i] - sum) / upper[i][i])
 
-    print(p)
-    print(lower)
-    print(upper)
-
+    print("P: " + str(p))
+    print("-------------------------")
+    print("L: " + str(lower))
+    print("-------------------------")
+    print("U: " + str(upper))
+    print("-------------------------")
 
     # Gauss elimination for LY = Pb
 
     y = np.array(np.zeros(n, float))
 
     # P*b
-
-    bn = np.array(np.matmul(p, b), float)
+    bn = np.array(np.matmul(p, b), float).copy()
 
     for k in range(n - 1):
         for i in range(k + 1, n):
@@ -85,13 +85,6 @@ def gauss(a, b):
     return x
 
 
-'''
-a = np.array([[0, 1, 2, 1, 2],
-              [1, 0, 0, 0, 1],
-              [2, 1, 2, 1, 5],
-              [1, 2, 4, 3, 6]], float)'''
-
-
 a = np.array([[0, 2, -1, 1],
               [-1, 1, 2, -1],
               [2, -1, 2, 2],
@@ -102,4 +95,5 @@ b = np.array([6, 3, 14, 8], float)
 
 x = gauss(a, b)
 
-print(x)
+print("x:" + str(x))
+print("-------------------------")
